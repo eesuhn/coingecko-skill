@@ -1,0 +1,451 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "skill_name": "coingecko",
+    "last_updated": "2026-03-13",
+    "total_tests": 15
+  },
+  "test_suites": [
+    {
+      "suite_name": "basic_reference_selection",
+      "description": "Tests for basic single-reference queries",
+      "priority": "critical",
+      "tests": [
+        {
+          "test_id": "ref_001",
+          "name": "Simple coin price query",
+          "category": "reference_selection",
+          "priority": "critical",
+          "user_query": "What's the current price of Bitcoin?",
+          "expected_references": [
+            "core.md",
+            "coins.md"
+          ],
+          "required_references": [
+            "core.md",
+            "coins.md"
+          ],
+          "forbidden_references": [
+            "onchain-pools.md",
+            "derivatives.md",
+            "treasury.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Core is always loaded. Coin price queries require coins.md for /simple/price or /coins/markets endpoints.",
+          "tags": [
+            "price",
+            "basic",
+            "coingecko"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "ref_002",
+          "name": "Historical OHLC data query",
+          "category": "reference_selection",
+          "priority": "critical",
+          "user_query": "Show me Bitcoin's OHLC data for the last 30 days",
+          "expected_references": [
+            "core.md",
+            "coin-history.md"
+          ],
+          "required_references": [
+            "core.md",
+            "coin-history.md"
+          ],
+          "forbidden_references": [
+            "coin-supply.md",
+            "nfts.md",
+            "onchain-ohlcv-trades.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Historical OHLC data is covered in coin-history.md, not coins.md. The onchain-ohlcv-trades.md is for DEX-specific data.",
+          "tags": [
+            "historical",
+            "ohlc",
+            "charts",
+            "coingecko"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "ref_003",
+          "name": "Contract address lookup",
+          "category": "reference_selection",
+          "priority": "critical",
+          "user_query": "Get the price for token at address 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 on Ethereum",
+          "expected_references": [
+            "core.md",
+            "contract.md"
+          ],
+          "required_references": [
+            "core.md",
+            "contract.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "onchain-tokens.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Contract address queries use contract.md which contains /simple/token_price and related endpoints.",
+          "tags": [
+            "contract",
+            "address",
+            "token",
+            "coingecko"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "ref_004",
+          "name": "NFT floor price query",
+          "category": "edge_cases",
+          "priority": "medium",
+          "user_query": "What's the floor price for Bored Ape Yacht Club NFTs?",
+          "expected_references": [
+            "core.md",
+            "nfts.md"
+          ],
+          "required_references": [
+            "core.md",
+            "nfts.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "onchain-tokens.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "NFT-specific queries should load nfts.md, not general coin endpoints.",
+          "tags": [
+            "nft",
+            "floor-price",
+            "coingecko"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "ref_005",
+          "name": "Global market statistics",
+          "category": "edge_cases",
+          "priority": "medium",
+          "user_query": "What's the total cryptocurrency market cap and Bitcoin dominance?",
+          "expected_references": [
+            "core.md",
+            "global.md"
+          ],
+          "required_references": [
+            "core.md",
+            "global.md"
+          ],
+          "forbidden_references": [
+            "coins.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Global market statistics and dominance metrics are in global.md.",
+          "tags": [
+            "global",
+            "market-cap",
+            "dominance"
+          ],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "suite_name": "api_routing",
+      "description": "Tests for CoinGecko vs GeckoTerminal routing logic",
+      "priority": "critical",
+      "tests": [
+        {
+          "test_id": "route_001",
+          "name": "DEX pool data query",
+          "category": "api_routing",
+          "priority": "critical",
+          "user_query": "Show me trending pools on Uniswap",
+          "expected_references": [
+            "core.md",
+            "onchain-pools.md"
+          ],
+          "required_references": [
+            "core.md",
+            "onchain-pools.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "exchanges.md"
+          ],
+          "expected_api_type": "geckoterminal",
+          "reasoning": "Pool data is GeckoTerminal-specific. onchain-networks.md may be optionally needed for DEX ID resolution.",
+          "tags": [
+            "pools",
+            "dex",
+            "onchain",
+            "geckoterminal"
+          ],
+          "complexity": "moderate"
+        },
+        {
+          "test_id": "route_002",
+          "name": "Onchain token with holders",
+          "category": "api_routing",
+          "priority": "high",
+          "user_query": "Get on-chain data for token 0x1234abcd on Ethereum including holder information",
+          "expected_references": [
+            "core.md",
+            "onchain-tokens.md"
+          ],
+          "required_references": [
+            "core.md",
+            "onchain-tokens.md"
+          ],
+          "forbidden_references": [
+            "contract.md",
+            "coins.md"
+          ],
+          "expected_api_type": "geckoterminal",
+          "reasoning": "Holder information is only available in GeckoTerminal's onchain-tokens.md. CoinGecko's contract.md doesn't have holder data.",
+          "tags": [
+            "onchain",
+            "token",
+            "holders",
+            "geckoterminal"
+          ],
+          "complexity": "moderate"
+        },
+        {
+          "test_id": "route_003",
+          "name": "CEX exchange volume (Binance)",
+          "category": "api_routing",
+          "priority": "critical",
+          "user_query": "What's the trading volume on Binance for ETH/USDT?",
+          "expected_references": [
+            "core.md",
+            "exchanges.md"
+          ],
+          "required_references": [
+            "core.md",
+            "exchanges.md"
+          ],
+          "forbidden_references": [
+            "onchain-pools.md",
+            "onchain-ohlcv-trades.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Binance is a CEX (centralized exchange), so should use CoinGecko's exchanges.md, not GeckoTerminal.",
+          "tags": [
+            "exchange",
+            "cex",
+            "volume",
+            "coingecko"
+          ],
+          "complexity": "moderate"
+        }
+      ]
+    },
+    {
+      "suite_name": "multi_reference",
+      "description": "Tests for queries requiring multiple reference files",
+      "priority": "high",
+      "tests": [
+        {
+          "test_id": "multi_001",
+          "name": "Coin price and exchange data",
+          "category": "multi_reference",
+          "priority": "high",
+          "user_query": "Show me Bitcoin's current price and which exchanges have the highest volume",
+          "expected_references": [
+            "core.md",
+            "coins.md",
+            "exchanges.md"
+          ],
+          "required_references": [
+            "core.md",
+            "coins.md",
+            "exchanges.md"
+          ],
+          "forbidden_references": [
+            "derivatives.md",
+            "onchain-pools.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Requires both coins.md for price and exchanges.md for exchange volume data.",
+          "tags": [
+            "price",
+            "exchange",
+            "volume",
+            "multi-domain"
+          ],
+          "complexity": "moderate"
+        },
+        {
+          "test_id": "multi_002",
+          "name": "Historical price and supply",
+          "category": "multi_reference",
+          "priority": "medium",
+          "user_query": "Get Bitcoin's price history and circulating supply over the last year",
+          "expected_references": [
+            "core.md",
+            "coin-history.md",
+            "coin-supply.md"
+          ],
+          "required_references": [
+            "core.md",
+            "coin-history.md",
+            "coin-supply.md"
+          ],
+          "forbidden_references": [
+            "derivatives.md",
+            "nfts.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Price history requires coin-history.md, supply charts require coin-supply.md.",
+          "tags": [
+            "historical",
+            "supply",
+            "charts",
+            "multi-domain"
+          ],
+          "complexity": "moderate"
+        },
+        {
+          "test_id": "multi_003",
+          "name": "Cross-API comparison",
+          "category": "multi_reference",
+          "priority": "high",
+          "user_query": "Compare the aggregated price from CoinGecko with the Uniswap pool price for USDC",
+          "expected_references": [
+            "core.md",
+            "coins.md",
+            "onchain-pools.md"
+          ],
+          "required_references": [
+            "core.md"
+          ],
+          "forbidden_references": [],
+          "expected_api_type": "both",
+          "reasoning": "Needs both CoinGecko (coins.md for aggregated price) and GeckoTerminal (onchain-pools.md for DEX pool price).",
+          "tags": [
+            "cross-api",
+            "price",
+            "comparison",
+            "multi-domain"
+          ],
+          "complexity": "complex"
+        }
+      ]
+    },
+    {
+      "suite_name": "edge_cases_and_utilities",
+      "description": "Tests for specialized endpoints and utilities",
+      "priority": "medium",
+      "tests": [
+        {
+          "test_id": "edge_001",
+          "name": "Derivatives/futures data",
+          "category": "edge_cases",
+          "priority": "medium",
+          "user_query": "What's the open interest for Bitcoin futures?",
+          "expected_references": [
+            "core.md",
+            "derivatives.md"
+          ],
+          "required_references": [
+            "core.md",
+            "derivatives.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "exchanges.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Futures and derivatives data is in derivatives.md, not exchanges.md (which covers spot exchanges).",
+          "tags": [
+            "derivatives",
+            "futures",
+            "open-interest"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "edge_002",
+          "name": "Corporate treasury holdings",
+          "category": "edge_cases",
+          "priority": "low",
+          "user_query": "How much Bitcoin does MicroStrategy hold?",
+          "expected_references": [
+            "core.md",
+            "treasury.md"
+          ],
+          "required_references": [
+            "core.md",
+            "treasury.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "exchanges.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Corporate crypto treasury holdings are in treasury.md.",
+          "tags": [
+            "treasury",
+            "corporate",
+            "holdings"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "util_001",
+          "name": "Search and trending",
+          "category": "reference_selection",
+          "priority": "medium",
+          "user_query": "Search for coins matching 'ethereum' and show trending searches",
+          "expected_references": [
+            "core.md",
+            "utils.md"
+          ],
+          "required_references": [
+            "core.md",
+            "utils.md"
+          ],
+          "forbidden_references": [
+            "coins.md"
+          ],
+          "expected_api_type": "coingecko",
+          "reasoning": "Search and trending endpoints are in utils.md, not coins.md.",
+          "tags": [
+            "search",
+            "trending",
+            "utils"
+          ],
+          "complexity": "simple"
+        },
+        {
+          "test_id": "auth_001",
+          "name": "API key and rate limit query",
+          "category": "auth_handling",
+          "priority": "high",
+          "user_query": "How do I set up my CoinGecko API key and what are the rate limits?",
+          "expected_references": [
+            "core.md"
+          ],
+          "required_references": [
+            "core.md"
+          ],
+          "forbidden_references": [
+            "coins.md",
+            "utils.md"
+          ],
+          "expected_api_type": "none",
+          "reasoning": "Auth setup, methodology, and rate limits are all in core.md.",
+          "tags": [
+            "auth",
+            "api-key",
+            "rate-limits",
+            "setup"
+          ],
+          "complexity": "simple"
+        }
+      ]
+    }
+  ]
+}
