@@ -5,10 +5,10 @@ description: >
   trading volume, market cap, OHLC charts, historical data, exchanges, derivatives,
   NFTs, DeFi, on-chain token data, liquidity pools, DEX data, or anything powered
   by CoinGecko or GeckoTerminal APIs. Trigger this skill whenever the user asks
-  about crypto prices, token data, market trends, portfolio data, or wants to call
-  any CoinGecko or GeckoTerminal endpoint — even if they don't explicitly say
-  "CoinGecko". Also trigger when the user asks about API keys, rate limits, or
-  authentication for these APIs.
+  about crypto prices, token data, market trends, or wants to call any CoinGecko
+  or GeckoTerminal endpoint — even if they don't explicitly say "CoinGecko". Also
+  trigger when the user asks about API keys, rate limits, or authentication for
+  these APIs.
 ---
 
 # CoinGecko Skill
@@ -38,12 +38,12 @@ load the file(s) that match the current request.
 | `references/contract.md` | Coin data or charts looked up by token contract address |
 | `references/asset-platforms.md` | Blockchain platform IDs, token lists |
 | `references/categories.md` | Coin categories and sector market data |
-| `references/exchanges.md` | Spot exchange data, tickers, volume charts |
+| `references/exchanges.md` | Spot and DEX exchange data, tickers, volume charts, volume chart by date range |
 | `references/derivatives.md` | Derivatives exchanges and tickers |
 | `references/treasury.md` | Public company/institution crypto treasury holdings |
-| `references/nfts.md` | NFT collection data, market data, charts |
+| `references/nfts.md` | NFT collection data, market data, charts, tickers (per-marketplace floor prices), contract address lookups |
 | `references/global.md` | Global market stats and DeFi data |
-| `references/utils.md` | API status, API key usage, supported currencies, search, trending, exchange rates |
+| `references/utils.md` | API status, API key usage, supported currencies, search, trending coins/NFTs/categories, exchange rates |
 
 ### GeckoTerminal (on-chain)
 

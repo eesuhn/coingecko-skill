@@ -82,7 +82,7 @@ known, or `GET /coins/list` in `references/coins.md` for the full ID map.
 | `id` | string | Yes (path) | CoinGecko coin ID |
 | `vs_currency` | string | Yes | Target currency. Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
 | `days` | string | Yes | Number of days ago (`1`, `7`, `14`, `30`, `90`, `180`, `365`, or `max`) |
-| `interval` | string | No | Data granularity: `daily` (all plans), `hourly` (all plans, auto only for non-Enterprise), `5m` (**Enterprise only** — last 10 days), `hourly` explicit (**Enterprise only** — last 100 days). Leave empty for auto granularity |
+| `interval` | string | No | Explicit granularity override — omit for auto (recommended). Options: `daily` (all plans), `5m` (**Enterprise only** — max 10 days back), `hourly` (**Enterprise only** — max 100 days back). Without this param, auto-granularity applies: 1 day → 5-minutely, 2–90 days → hourly, 90+ days → daily |
 | `precision` | string | No | Decimal places: `full` or `0`–`18` |
 
 ### Notes
@@ -137,7 +137,7 @@ known, or `GET /coins/list` in `references/coins.md` for the full ID map.
 | `vs_currency` | string | Yes | Target currency. Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
 | `from` | string | Yes | Start date as ISO string (`YYYY-MM-DD` or `YYYY-MM-DDTHH:MM`, recommended) or UNIX timestamp |
 | `to` | string | Yes | End date as ISO string (`YYYY-MM-DD` or `YYYY-MM-DDTHH:MM`, recommended) or UNIX timestamp |
-| `interval` | string | No | Data granularity: `daily` (all plans), `5m` (**Enterprise only** — max 10-day range), `hourly` (**Enterprise only** — max 100-day range). Leave empty for auto granularity |
+| `interval` | string | No | Explicit granularity override — omit for auto (recommended). Options: `daily` (all plans), `5m` (**Enterprise only** — max 10-day range), `hourly` (**Enterprise only** — max 100-day range). Without this param, auto-granularity applies: 1 day → 5-minutely, 2–90 days → hourly, 90+ days → daily |
 | `precision` | string | No | Decimal places: `full` or `0`–`18` |
 
 ### Notes

@@ -26,6 +26,9 @@ None.
 {
   "data": {
     "active_cryptocurrencies": 13690,
+    "upcoming_icos": 0,
+    "ongoing_icos": 49,
+    "ended_icos": 3376,
     "markets": 1046,
     "total_market_cap": { "usd": 2721226850772.63, "btc": 39003738.08 },
     "total_volume": { "usd": 69327091133.55, "btc": 993675.23 },

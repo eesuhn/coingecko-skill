@@ -7,6 +7,12 @@ address endpoints, or when they ask for a list of tokens on a blockchain network
 Asset platform IDs are required by endpoints in `references/contract.md` and
 `references/nfts.md`.
 
+**Note on GeckoTerminal network IDs:** CoinGecko asset platform IDs (e.g. `ethereum`,
+`polygon-pos`) differ in format from GeckoTerminal network IDs (e.g. `eth`, `polygon_pos`).
+The mapping between the two is available via `references/onchain-networks.md` →
+`GET /onchain/networks` — each network object includes a `coingecko_asset_platform_id` field.
+Do not use CoinGecko asset platform IDs directly in GeckoTerminal onchain endpoints.
+
 ---
 
 ## `GET /asset_platforms` — Asset Platforms List (ID Map)

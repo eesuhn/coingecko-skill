@@ -4,10 +4,10 @@ Covers derivatives tickers, derivatives exchange discovery, and derivatives exch
 data. Load this file when the user asks about futures, perpetuals, derivatives
 exchanges, open interest, funding rates, or derivatives tickers.
 
-Derivatives exchange IDs (e.g. `binance_futures`, `bybit`) are resolved here via
-`GET /derivatives/exchanges/list`. Note that `GET /exchanges/list` in
-`references/exchanges.md` also includes derivatives exchange IDs and can be used
-interchangeably for volume chart endpoints.
+Derivatives exchange IDs (e.g. `binance_futures`, `bybit`) are best resolved via
+`GET /derivatives/exchanges/list` in this file — it returns only derivatives exchanges.
+`GET /exchanges/list` in `references/exchanges.md` also includes derivatives exchange IDs
+(alongside spot exchanges) and can be used interchangeably for volume chart endpoints.
 
 To convert BTC-denominated volume to other currencies, use `references/utils.md` →
 `GET /exchange_rates`.

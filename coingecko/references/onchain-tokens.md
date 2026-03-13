@@ -20,9 +20,9 @@ Requires network IDs — load `references/onchain-networks.md` first if unknown.
 | Pool Tokens Info by Pool Address | `GET /onchain/networks/{network}/pools/{pool_address}/info` | Paid |
 | Top Pools by Token Address | `GET /onchain/networks/{network}/tokens/{token_address}/pools` | Paid |
 | Most Recently Updated Tokens List | `GET /onchain/tokens/info_recently_updated` | Paid |
-| Top Token Holders by Token Address | `GET /onchain/networks/{network}/tokens/{address}/top_holders` | Analyst+ |
-| Historical Token Holders Chart | `GET /onchain/networks/{network}/tokens/{token_address}/holders_chart` | Analyst+ |
-| Top Token Traders by Token Address | `GET /onchain/networks/{network_id}/tokens/{token_address}/top_traders` | Analyst+ |
+| Top Token Holders by Token Address | `GET /onchain/networks/{network}/tokens/{address}/top_holders` | Analyst, Lite, Pro, Enterprise |
+| Historical Token Holders Chart | `GET /onchain/networks/{network}/tokens/{token_address}/holders_chart` | Analyst, Lite, Pro, Enterprise |
+| Top Token Traders by Token Address | `GET /onchain/networks/{network_id}/tokens/{token_address}/top_traders` | Analyst, Lite, Pro, Enterprise |
 
 ---
 

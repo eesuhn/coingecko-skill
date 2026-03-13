@@ -114,7 +114,6 @@ if the target is known, or `GET /coins/list` in `references/coins.md` for the fu
 | `interval` | string | No | Only `daily` is supported. Leave empty for auto granularity |
 
 ### Notes
-- Unlike the circulating supply endpoint, `interval` only accepts `daily` — there is no `5m` or `hourly` option.
 - Leave `interval` empty for auto granularity:
   - 1 day from now → 5-minutely
   - 2–90 days from now → hourly

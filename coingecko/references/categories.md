@@ -38,7 +38,7 @@ None.
 
 | Field | Description |
 |---|---|
-| `category_id` | Category ID — use as the `category` param in other endpoints |
+| `category_id` | Category ID — use as the `category` param in other endpoints. Same value as the `id` field returned by `GET /coins/categories` |
 | `name` | Human-readable category name |
 
 ---

@@ -131,15 +131,11 @@ See `references/coins.md` → `GET /coins/{id}` for the complete field reference
 | `contract_address` | string | Yes (path) | Token contract address |
 | `vs_currency` | string | Yes | Target currency. Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
 | `days` | string | Yes | Number of days ago — any integer or `max` |
-| `interval` | string | No | Data granularity: `daily` (all plans), `5m` (**Enterprise only** — last 10 days), `hourly` (**Enterprise only** — last 100 days). Leave empty for auto granularity |
+| `interval` | string | No | Explicit granularity override — omit for auto (recommended). Options: `daily` (all plans), `5m` (**Enterprise only** — max 10 days back), `hourly` (**Enterprise only** — max 100 days back). Without this param, auto-granularity applies: 1 day → 5-minutely, 2–90 days → hourly, 90+ days → daily |
 | `precision` | string | No | Decimal places: `full` or `0`–`18` |
 
 ### Notes
-- Leave `interval` empty for automatic granularity:
-  - 1 day from now → 5-minutely
-  - 2–90 days from now → hourly
-  - Above 90 days from now → daily (00:00 UTC)
-- `interval=5m` and `interval=hourly` (explicit) are **Enterprise only** and bypass auto-granularity.
+- Non-Enterprise subscribers wanting hourly data should leave `interval` empty and use `days` within 2–90.
 - Cache / Update Frequency: every 5 minutes for all plans.
 - The last completed UTC day is available 35 minutes after midnight (00:35 UTC).
 
@@ -188,16 +184,12 @@ See `references/coins.md` → `GET /coins/{id}` for the complete field reference
 | `vs_currency` | string | Yes | Target currency. Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
 | `from` | string | Yes | Start date as ISO string (`YYYY-MM-DD` or `YYYY-MM-DDTHH:MM`, recommended) or UNIX timestamp |
 | `to` | string | Yes | End date as ISO string (`YYYY-MM-DD` or `YYYY-MM-DDTHH:MM`, recommended) or UNIX timestamp |
-| `interval` | string | No | Data granularity: `daily` (all plans), `5m` (**Enterprise only** — max 10-day range), `hourly` (**Enterprise only** — max 100-day range). Leave empty for auto granularity |
+| `interval` | string | No | Explicit granularity override — omit for auto (recommended). Options: `daily` (all plans), `5m` (**Enterprise only** — max 10-day range), `hourly` (**Enterprise only** — max 100-day range). Without this param, auto-granularity applies: 1 day → 5-minutely, 2–90 days → hourly, 90+ days → daily |
 | `precision` | string | No | Decimal places: `full` or `0`–`18` |
 
 ### Notes
 - Use ISO date strings (`YYYY-MM-DD`) for best compatibility over UNIX timestamps.
-- Leave `interval` empty for automatic granularity:
-  - 1 day from now → 5-minutely
-  - 1 day from any past time (or 2–90 days) → hourly
-  - Above 90 days → daily (00:00 UTC)
-- `interval=5m` and `interval=hourly` (explicit) are **Enterprise only**.
+- Non-Enterprise subscribers wanting hourly data should leave `interval` empty and use a range within 2–90 days.
 - Cache varies by range: 1 day → 30s, 2–90 days → 30 min, above 90 days → 12 hours.
 - The last completed UTC day is available 35 minutes after midnight (00:35 UTC).
 
