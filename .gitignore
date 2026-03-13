@@ -1,6 +1,1 @@
-# Artifacts from testing
-testing/output/*
-!testing/output/.gitkeep
-
-# Misc.
 .DS_Store
