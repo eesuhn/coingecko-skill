@@ -196,7 +196,7 @@ endpoints in this file also accept derivatives exchange IDs.
 ### Notes
 - Results are paginated at 100 tickers per page.
 - Use `order=base_target` for stable pagination — sorts by base then target symbol lexicographically, minimising duplicates or gaps across pages.
-- Cache / Update Frequency: every 60 seconds (Basic, Analyst, Lite, Pro, Enterprise).
+- Cache / Update Frequency: every 60 seconds (Analyst, Lite, Pro, Enterprise).
 
 ### Example Response
 ```json

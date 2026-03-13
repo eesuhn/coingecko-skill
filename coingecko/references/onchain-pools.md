@@ -135,7 +135,7 @@ Populated when `include` param is used. Each item has `id`, `type`, and `attribu
 
 | Field | Value |
 |---|---|
-| Plan | Paid only (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | Paid only (Analyst, Lite, Pro, Enterprise) |
 | Cache | Every 10 seconds |
 
 Returns a single pool object (`data` is an object, not array). Includes extended
@@ -156,7 +156,7 @@ attributes (`pool_name`, `pool_fee_percentage`, volume breakdown, composition,
 
 | Field | Value |
 |---|---|
-| Plan | Paid only (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | Paid only (Analyst, Lite, Pro, Enterprise) |
 | Cache | Every 10 seconds |
 
 Batch lookup. Same extended attributes as single pool endpoint. Up to 50 addresses

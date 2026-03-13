@@ -38,7 +38,7 @@ None.
 |---|---|
 | Description | Monitor API key usage including rate limits, monthly credits, and remaining credits |
 | Path | `GET /key` |
-| Plan | **Paid only** (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | **Paid only** (Analyst, Lite, Pro, Enterprise) |
 
 ### Parameters
 
@@ -92,7 +92,7 @@ None.
 ### Notes
 - Use values from this endpoint wherever an endpoint accepts `vs_currency` or `vs_currencies`.
 - Includes fiat currencies (e.g. `usd`, `eur`, `jpy`), cryptocurrencies (e.g. `btc`, `eth`, `sol`), and commodities (e.g. `xau`, `xag`).
-- Cache / Update Frequency: every 60 seconds (Basic, Analyst, Lite, Pro, Enterprise).
+- Cache / Update Frequency: every 60 seconds (Analyst, Lite, Pro, Enterprise).
 
 ### Example Response
 ```json

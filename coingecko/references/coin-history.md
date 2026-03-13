@@ -198,7 +198,7 @@ known, or `GET /coins/list` in `references/coins.md` for the full ID map.
 | `precision` | string | No | Decimal places: `full` or `0`–`18` |
 
 ### Notes
-- `interval=daily` and `interval=hourly` are available to **all paid plan subscribers** (Basic, Analyst, Lite, Pro, Enterprise).
+- `interval=daily` and `interval=hourly` are available to **all paid plan subscribers** (Analyst, Lite, Pro, Enterprise).
 - Leaving `interval` empty uses auto granularity available to all plans:
   - 1–2 days → 30-minute candles
   - 3–30 days → 4-hour candles
@@ -232,7 +232,7 @@ known, or `GET /coins/list` in `references/coins.md` for the full ID map.
 |---|---|
 | Description | Query OHLC candlestick data for a coin within a specific date range |
 | Path | `GET /coins/{id}/ohlc/range` |
-| Plan | **Paid only** (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | **Paid only** (Analyst, Lite, Pro, Enterprise) |
 
 ### Parameters
 

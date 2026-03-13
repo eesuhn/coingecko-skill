@@ -372,7 +372,7 @@ Coin IDs referenced in these endpoints can be resolved via `GET /search` in `ref
 |---|---|
 | Description | Query the top 30 coins with largest price gain and loss by time duration |
 | Path | `GET /coins/top_gainers_losers` |
-| Plan | **Paid only** (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | **Paid only** (Analyst, Lite, Pro, Enterprise) |
 
 ### Parameters
 
@@ -444,7 +444,7 @@ Coin IDs referenced in these endpoints can be resolved via `GET /search` in `ref
 |---|---|
 | Description | Query the latest coins recently listed on CoinGecko |
 | Path | `GET /coins/list/new` |
-| Plan | **Paid only** (Basic, Analyst, Lite, Pro, Enterprise) |
+| Plan | **Paid only** (Analyst, Lite, Pro, Enterprise) |
 
 ### Parameters
 

@@ -31,7 +31,7 @@ Do not use CoinGecko asset platform IDs directly in GeckoTerminal onchain endpoi
 
 ### Notes
 - Use this endpoint to resolve asset platform IDs for contract address endpoints and NFT endpoints.
-- Cache / Update Frequency: every 60 seconds (Basic, Analyst, Lite, Pro, Enterprise).
+- Cache / Update Frequency: every 60 seconds (Analyst, Lite, Pro, Enterprise).
 
 ### Example Response
 ```json

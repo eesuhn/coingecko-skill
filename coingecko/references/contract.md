@@ -34,7 +34,7 @@ Asset platform IDs can be resolved via `references/asset-platforms.md` →
 
 ### Notes
 - Returns the global average price aggregated across all active exchanges on CoinGecko.
-- Cache / Update Frequency: every 20 seconds (Basic, Analyst, Lite, Pro, Enterprise).
+- Cache / Update Frequency: every 20 seconds (Analyst, Lite, Pro, Enterprise).
 
 ### Example Response
 ```json
