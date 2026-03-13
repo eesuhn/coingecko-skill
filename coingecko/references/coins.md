@@ -5,7 +5,7 @@ the user is asking about coin prices, market cap, volume, coin details, tickers,
 added coins, or top gainers/losers. For historical charts or OHLC data, see `references/coin-history.md`.
 For supply charts, see `references/coin-supply.md`. For contract address lookups, see `references/contract.md`.
 
-Coin IDs referenced in these endpoints can be resolved via `GET /coins/list` (this file).
+Coin IDs referenced in these endpoints can be resolved via `GET /search` in `references/utils.md` if the target coin is known, or `GET /coins/list` (this file) for the full ID map.
 
 ---
 
@@ -22,7 +22,7 @@ Coin IDs referenced in these endpoints can be resolved via `GET /coins/list` (th
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `vs_currencies` | string | Yes | Target currency (comma-separated for multiple). Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
-| `ids` | string | No | Coin IDs (comma-separated). Refer to `GET /coins/list` (this file). Priority: `ids` > `names` > `symbols` |
+| `ids` | string | No | Coin IDs (comma-separated). Use `references/utils.md` → `GET /search` if the target is known, or `GET /coins/list` (this file) for the full ID map. Priority: `ids` > `names` > `symbols` |
 | `names` | string | No | Coin names (comma-separated). URL-encode spaces (e.g. `Binance%20Coin`) |
 | `symbols` | string | No | Coin symbols (comma-separated) |
 | `include_tokens` | string | No | For `symbols` lookup: `top` (default, by market cap/volume) or `all` (all matches, max 50 symbols) |
@@ -120,7 +120,7 @@ Coin IDs referenced in these endpoints can be resolved via `GET /coins/list` (th
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `vs_currency` | string | Yes | Target currency. Refer to `references/utils.md` → `GET /simple/supported_vs_currencies` |
-| `ids` | string | No | Filter by coin IDs (comma-separated). Refer to `GET /coins/list` (this file) |
+| `ids` | string | No | Filter by coin IDs (comma-separated). Use `references/utils.md` → `GET /search` if the target is known, or `GET /coins/list` (this file) for the full ID map |
 | `names` | string | No | Filter by coin names. URL-encode spaces |
 | `symbols` | string | No | Filter by coin symbols (comma-separated) |
 | `include_tokens` | string | No | For `symbols` lookup: `top` (default) or `all` (max 50 symbols) |
