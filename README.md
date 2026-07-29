@@ -95,6 +95,38 @@ Have fun experimenting!
 
 ---
 
+## Deployment (Maintainers)
+
+This SKILL is published to ClawHub as **`@coingecko/coingecko-api`**.
+
+### Automatic
+
+Pushing a `v*` tag runs [`.github/workflows/publish.yml`](.github/workflows/publish.yml), which publishes the repository root to ClawHub. Running that workflow manually from the **Actions** tab performs a dry run by default, so you can preview a release before tagging it. The workflow needs a repository Actions secret named `CLAWHUB_PUBLISH_TOKEN`, generated from the ClawHub web UI under the `coingecko` publisher.
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+### Manual
+
+```bash
+npm install -g clawhub
+clawhub login
+
+# Preview first
+clawhub skill publish . --owner @coingecko --slug coingecko-api --name "CoinGecko API" --dry-run
+
+# Then publish
+clawhub skill publish . --owner @coingecko --slug coingecko-api --name "CoinGecko API"
+```
+
+Run this from the repository root, since `SKILL.md` lives at the top level and `.` is the skill folder. The `--slug` and `--name` flags are required here because ClawHub otherwise derives both from the folder name, which would publish the SKILL as `skills` instead of `coingecko-api`.
+
+ClawHub assigns the version: the first publish is `1.0.0` and each later publish with changed content becomes the next patch version. Pass `--version <semver>` if you need a specific one, and `--changelog "<text>"` to describe the release.
+
+---
+
 ## Feedback
 
 Tell us how you're using the CoinGecko SKILL and what we should improve — reach out to `eason.lim@coingecko[dot]com`.

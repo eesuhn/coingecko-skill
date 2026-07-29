@@ -1,0 +1,50 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview the publish without mutating the registry
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest # TODO switch to self hosted mini runners
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - run: npm install -g clawhub
+
+      # Belongs to jason.julian
+      - name: Authenticate
+        env:
+          CLAWHUB_PUBLISH_TOKEN: ${{ secrets.CLAWHUB_PUBLISH_TOKEN }}
+        run: clawhub login --token "$CLAWHUB_PUBLISH_TOKEN"
+
+      # SKILL.md is at the repo root, so the repo itself is the skill folder.
+      # --slug and --name are explicit because they otherwise default to the
+      # checkout directory name ("skills").
+      - name: Publish
+        env:
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            set -- --dry-run
+          fi
+          clawhub skill publish . \
+            --owner @coingecko \
+            --slug coingecko-api \
+            --name "CoinGecko API" "$@"
