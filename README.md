@@ -101,12 +101,13 @@ This SKILL is published to ClawHub as **`@coingecko/coingecko-api`**.
 
 ### Automatic
 
-Pushing a `v*` tag runs [`.github/workflows/publish.yml`](.github/workflows/publish.yml), which publishes the repository root to ClawHub. Running that workflow manually from the **Actions** tab performs a dry run by default, so you can preview a release before tagging it. The workflow needs a repository Actions secret named `CLAWHUB_PUBLISH_TOKEN`, generated from the ClawHub web UI under the `coingecko` publisher.
+Every push to `main` runs [`.github/workflows/publish.yml`](.github/workflows/publish.yml), which publishes the repository root to ClawHub. Merging a pull request is therefore all it takes to ship a new version, and no tagging or manual step is involved.
 
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-```
+Running the workflow manually from the **Actions** tab performs a dry run by default, which is the way to preview a publish without changing the registry. The workflow needs a repository Actions secret named `CLAWHUB_PUBLISH_TOKEN`, generated from the ClawHub web UI under the `coingecko` publisher.
+
+Publishing is idempotent: if the SKILL content has not changed since the last release, ClawHub reports it as already published and no new version is created, so a push that changes nothing in the package is a harmless no-op.
+
+ClawHub packages every file in the repository except those matched by `.gitignore` or [`.clawhubignore`](.clawhubignore). The latter excludes repository plumbing such as `.github/`, so that editing CI configuration does not ship a new version of the SKILL. Add to it if you introduce other files that should not travel with the package.
 
 ### Manual
 
