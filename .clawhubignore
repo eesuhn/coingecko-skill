@@ -1,0 +1,3 @@
+# Repository plumbing that is not part of the published SKILL.
+.github/
+.claude/

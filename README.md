@@ -95,6 +95,39 @@ Have fun experimenting!
 
 ---
 
+## Deployment (Maintainers)
+
+This SKILL is published to ClawHub as **`@coingecko/coingecko-api`**.
+
+### Automatic
+
+Every push to `main` runs [`.github/workflows/publish.yml`](.github/workflows/publish.yml), which publishes the repository root to ClawHub. Merging a pull request is therefore all it takes to ship a new version, and no tagging or manual step is involved.
+
+Running the workflow manually from the **Actions** tab performs a dry run by default, which is the way to preview a publish without changing the registry. The workflow needs a repository Actions secret named `CLAWHUB_PUBLISH_TOKEN`, generated from the ClawHub web UI under the `coingecko` publisher.
+
+Publishing is idempotent: if the SKILL content has not changed since the last release, ClawHub reports it as already published and no new version is created, so a push that changes nothing in the package is a harmless no-op.
+
+ClawHub packages every file in the repository except those matched by `.gitignore` or [`.clawhubignore`](.clawhubignore). The latter excludes repository plumbing such as `.github/`, so that editing CI configuration does not ship a new version of the SKILL. Add to it if you introduce other files that should not travel with the package.
+
+### Manual
+
+```bash
+npm install -g clawhub
+clawhub login
+
+# Preview first
+clawhub skill publish . --owner @coingecko --slug coingecko-api --name "CoinGecko API" --dry-run
+
+# Then publish
+clawhub skill publish . --owner @coingecko --slug coingecko-api --name "CoinGecko API"
+```
+
+Run this from the repository root, since `SKILL.md` lives at the top level and `.` is the skill folder. The `--slug` and `--name` flags are required here because ClawHub otherwise derives both from the folder name, which would publish the SKILL as `skills` instead of `coingecko-api`.
+
+ClawHub assigns the version: the first publish is `1.0.0` and each later publish with changed content becomes the next patch version. Pass `--version <semver>` if you need a specific one, and `--changelog "<text>"` to describe the release.
+
+---
+
 ## Feedback
 
 Tell us how you're using the CoinGecko SKILL and what we should improve — reach out to `eason.lim@coingecko[dot]com`.
